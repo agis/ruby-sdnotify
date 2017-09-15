@@ -13,16 +13,16 @@ Refer to the [API documentation](http://www.rubydoc.info/github/agis/ruby-sdnoti
 Install ruby-sdnotify:
 
 ```shell
-$ gem install ruby-sdnotify
+$ gem install sd_notify
 ```
 
 If you're using Bundler, add it to your Gemfile:
 
 ```ruby
-gem "ruby-sdnotify"
+gem "sd_notify"
 ```
 
-and run `bundle install`.
+and run `bundle install`
 
 ## Usage
 
