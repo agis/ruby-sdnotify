@@ -37,6 +37,7 @@ require "sd_notify"
 
 puts "Hello. Booting..."
 sleep 2 # do some initialization work ...
+
 SdNotify.ready
 
 sum = 0
@@ -49,6 +50,8 @@ end
 puts "Finished working, shutting down..."
 SdNotify.stopping
 sleep 2 # do cleanup work...
+
+puts "Bye"
 ```
 
 ## License
