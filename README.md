@@ -4,7 +4,7 @@
 [![Documentation](http://img.shields.io/badge/yard-docs-blue.svg)](http://www.rubydoc.info/github/agis/ruby-sdnotify)
 
 A pure Ruby implementation of [sd_notify(3)](https://www.freedesktop.org/software/systemd/man/sd_notify.html) that can be used to
-communicate state changes of Ruby programs to systemd.
+communicate state changes of Ruby programs to [systemd](https://www.freedesktop.org/wiki/Software/systemd/).
 
 Refer to the [API documentation](http://www.rubydoc.info/github/agis/ruby-sdnotify) for more info.
 
@@ -30,7 +30,7 @@ The [API](http://www.rubydoc.info/github/agis/ruby-sdnotify) is mostly tied to
 the official implementation, therefore refer to the [sd_notify(3) man pages](https://www.freedesktop.org/software/systemd/man/sd_notify.html)
 for detailed description of how the notification mechanism works.
 
-A simple example:
+An example (assuming the program shipped as a systemd service):
 
 ```ruby
 require "sd_notify"
