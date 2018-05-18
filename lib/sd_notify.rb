@@ -57,6 +57,33 @@ module SdNotify
     notify(FDSTORE, unset_env)
   end
 
+  # @param [Boolean] true if the service manager expects watchdog keep-alive
+  #   notification messages to be sent from this process.
+  #
+  # If the $WATCHDOG_USEC environment variable is set,
+  # and the $WATCHDOG_PID variable is unset or set to the PID of the current
+  # process
+  #
+  # @note Unlike sd_watchdog_enabled(3), this method does not mutate the
+  #   environment.
+  def self.watchdog?
+    wd_usec = ENV["WATCHDOG_USEC"]
+    wd_pid = ENV["WATCHDOG_PID"]
+
+    return false if !wd_usec
+
+    begin
+      wd_usec = Integer(wd_usec)
+    rescue
+      return false
+    end
+
+    return false if wd_usec <= 0
+    return true if !wd_pid || wd_pid == $$.to_s
+
+    false
+  end
+
   # Notify systemd with the provided state, via the notification socket, if
   # any.
   #
