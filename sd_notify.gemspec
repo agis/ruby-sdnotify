@@ -12,6 +12,9 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/agis/ruby-sdnotify"
   s.license     = "MIT"
 
+  s.required_ruby_version = ">= 2.3.0"
+
+  s.add_development_dependency "minitest"
   s.add_development_dependency "rubocop"
   s.add_development_dependency "rubocop-performance"
 end

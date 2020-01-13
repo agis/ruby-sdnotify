@@ -106,21 +106,16 @@ module SdNotify
   def self.notify(state, unset_env=false)
     sock = ENV["NOTIFY_SOCKET"]
 
-    return nil if !sock
+    return nil unless sock
 
     ENV.delete("NOTIFY_SOCKET") if unset_env
 
-    connected = false
-
     begin
-      sock = Addrinfo.unix(sock, :DGRAM).connect
-      connected = true
-      sock.close_on_exec = true
-      sock.write(state)
+      Addrinfo.unix(sock, :DGRAM).connect do |s|
+        s.write(state)
+      end
     rescue StandardError => e
       raise NotifyError, "#{e.class}: #{e.message}", e.backtrace
-    ensure
-      sock.close if connected
     end
   end
 end
