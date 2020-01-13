@@ -14,10 +14,11 @@ class SdNotifyTest < Minitest::Test
   def test_sd_notify_ready
     setup_socket
 
-    SdNotify.ready
+    bytes_sent = SdNotify.ready
 
     assert_equal(socket_message, "READY=1")
     assert_equal(ENV["NOTIFY_SOCKET"], @sockaddr)
+    assert_equal(bytes_sent, 7)
   end
 
   def test_sd_notify_ready_unset
