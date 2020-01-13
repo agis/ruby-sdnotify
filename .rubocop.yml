@@ -1,0 +1,9 @@
+require:
+  - rubocop-performance
+
+Layout/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: no_space
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Gem::Specification.new do |s|
   s.name        = "sd_notify"
   s.version     = "0.1.0"
@@ -9,4 +11,7 @@ Gem::Specification.new do |s|
   s.files       = ["lib/sd_notify.rb", "LICENSE", "README.md", "CHANGELOG.md"]
   s.homepage    = "https://github.com/agis/ruby-sdnotify"
   s.license     = "MIT"
+
+  s.add_development_dependency "rubocop"
+  s.add_development_dependency "rubocop-performance"
 end

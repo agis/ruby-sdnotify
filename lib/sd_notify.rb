@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "socket"
 
 # SdNotify is a pure-Ruby implementation of sd_notify(3). It can be used to
