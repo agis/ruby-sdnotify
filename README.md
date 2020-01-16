@@ -24,15 +24,13 @@ If you're using Bundler, add it to your Gemfile:
 gem "sd_notify"
 ```
 
-and run `bundle install`
-
 ## Usage
 
 The [API](http://www.rubydoc.info/github/agis/ruby-sdnotify) is mostly tied to
 the official implementation, therefore refer to the [sd_notify(3) man pages](https://www.freedesktop.org/software/systemd/man/sd_notify.html)
 for detailed description of how the notification mechanism works.
 
-An example (assuming the program shipped as a systemd service):
+An example (assuming the program is shipped as a systemd service):
 
 ```ruby
 require "sd_notify"
