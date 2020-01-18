@@ -31,7 +31,7 @@ class SdNotifyTest < Minitest::Test
   end
 
   def teardown
-    @socket&.close
+    @socket.close if @socket
     File.unlink(@sockaddr) if @sockaddr
     @socket = nil
     @sockaddr = nil

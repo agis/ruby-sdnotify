@@ -7,3 +7,5 @@ Layout/SpaceAroundEqualsInParameterDefault:
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
+Style/SafeNavigation:
+  Enabled: false
