@@ -106,7 +106,7 @@ module SdNotify
   def self.notify(state, unset_env=false)
     sock = ENV["NOTIFY_SOCKET"]
 
-    return nil unless sock
+    return nil if !sock
 
     ENV.delete("NOTIFY_SOCKET") if unset_env
 

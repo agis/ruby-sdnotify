@@ -9,3 +9,6 @@ Style/StringLiterals:
 
 Style/SafeNavigation:
   Enabled: false
+
+Style/NegatedIf:
+  Enabled: false
