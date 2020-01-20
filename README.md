@@ -30,26 +30,38 @@ The [API](http://www.rubydoc.info/github/agis/ruby-sdnotify) is mostly tied to
 the official implementation, therefore refer to the [sd_notify(3) man pages](https://www.freedesktop.org/software/systemd/man/sd_notify.html)
 for detailed description of how the notification mechanism works.
 
-An example (assuming the program is shipped as a systemd service):
+An example involving a dummy workload (assuming the program is shipped as a
+systemd service):
 
 ```ruby
 require "sd_notify"
 
-puts "Hello. Booting..."
-sleep 2 # do some initialization work ...
+puts "Hello! Booting..."
 
+# doing some initialization work...
+sleep 2
+
+# notify systemd that we're ready
 SdNotify.ready
 
 sum = 0
 5.times do |i|
-  sleep 1 # perform some work
+  # doing our main work...
+  sleep 1
+
   sum += 1
+
+  # notify systemd of our progress
   SdNotify.status("{sum} jobs completed")
 end
 
-puts "Finished working, shutting down..."
+puts "Finished working. Shutting down..."
+
+# notify systemd we're shutting down
 SdNotify.stopping
-sleep 2 # do cleanup work...
+
+# doing some cleanup work...
+sleep 2
 
 puts "Bye"
 ```
