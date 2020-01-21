@@ -112,6 +112,7 @@ module SdNotify
 
     begin
       Addrinfo.unix(sock, :DGRAM).connect do |s|
+        s.close_on_exec = true
         s.write(state)
       end
     rescue StandardError => e
