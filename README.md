@@ -1,6 +1,7 @@
 # ruby-sdnotify
 
 [![Gem Version](https://badge.fury.io/rb/sd_notify.svg)](https://badge.fury.io/rb/sd_notify)
+[![Build Status](https://travis-ci.org/agis/ruby-sdnotify.svg?branch=master)](https://travis-ci.org/agis/ruby-sdnotify)
 [![Documentation](http://img.shields.io/badge/yard-docs-blue.svg)](http://www.rubydoc.info/github/agis/ruby-sdnotify)
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
