@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/sd_notify.svg)](https://badge.fury.io/rb/sd_notify)
 [![Documentation](http://img.shields.io/badge/yard-docs-blue.svg)](http://www.rubydoc.info/github/agis/ruby-sdnotify)
-![License](https://img.shields.io/github/license/mashape/apistatus.svg)
+[![License](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
 
 A pure Ruby implementation of [sd_notify(3)](https://www.freedesktop.org/software/systemd/man/sd_notify.html) that can be used to
