@@ -1,3 +1,7 @@
+branches:
+  only:
+    - master
+
 language: ruby
 rvm:
   - 2.2
@@ -7,10 +11,10 @@ rvm:
   - 2.6
   - 2.7
   - ruby-head
-  
+
 jobs:
   allow_failures:
     - rvm: ruby-head
-  
+
 sript:
   - ruby -Ilib:test test/*
