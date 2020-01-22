@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "socket"
 
 # SdNotify is a pure-Ruby implementation of sd_notify(3). It can be used to
@@ -108,17 +110,13 @@ module SdNotify
 
     ENV.delete("NOTIFY_SOCKET") if unset_env
 
-    connected = false
-
     begin
-      sock = Addrinfo.unix(sock, :DGRAM).connect
-      connected = true
-      sock.close_on_exec = true
-      sock.write(state)
+      Addrinfo.unix(sock, :DGRAM).connect do |s|
+        s.close_on_exec = true
+        s.write(state)
+      end
     rescue StandardError => e
       raise NotifyError, "#{e.class}: #{e.message}", e.backtrace
-    ensure
-      sock.close if connected
     end
   end
 end

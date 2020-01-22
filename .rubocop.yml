@@ -1,0 +1,14 @@
+require:
+  - rubocop-performance
+
+Layout/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: no_space
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/SafeNavigation:
+  Enabled: false
+
+Style/NegatedIf:
+  Enabled: false
