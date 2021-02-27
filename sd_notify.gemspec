@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = "sd_notify"
-  s.version     = "0.1.0"
+  s.version     = "0.1.1"
   s.summary     = "Pure Ruby implementation of systemd's sd_notify(3)"
   s.description = "sd_notify can be used to notify systemd about various " \
                   "service status changes of Ruby programs"
