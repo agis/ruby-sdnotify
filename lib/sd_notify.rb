@@ -59,12 +59,12 @@ module SdNotify
     notify(FDSTORE, unset_env)
   end
 
-  # @param [Boolean] true if the service manager expects watchdog keep-alive
-  #   notification messages to be sent from this process.
-  #
   # If the $WATCHDOG_USEC environment variable is set,
   # and the $WATCHDOG_PID variable is unset or set to the PID of the current
   # process
+  #
+  # @return [Boolean] true if the service manager expects watchdog keep-alive
+  #   notification messages to be sent from this process.
   #
   # @note Unlike sd_watchdog_enabled(3), this method does not mutate the
   #   environment.
