@@ -8,13 +8,30 @@ on:
   pull_request:
 
 jobs:
+  build_older:
+    runs-on: ubuntu-20.04
+    name: Ruby ${{ matrix.ruby }}
+    strategy:
+      matrix:
+        ruby:
+          - 2.2
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Run tests
+        run: ruby -Ilib:test test/*
+
   build:
     runs-on: ubuntu-latest
     name: Ruby ${{ matrix.ruby }}
     strategy:
       matrix:
         ruby:
-          - 2.2
           - 2.3
           - 2.4
           - 2.5
