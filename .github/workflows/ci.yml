@@ -23,10 +23,8 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-      - name: Install compatible Minitest
-        run: bundle add minitest --version 5.0.8
       - name: Run tests
-        run: ruby -Ilib:test test/*
+        run: bundle exec ruby -Ilib:test test/*
 
   build:
     runs-on: ubuntu-latest
