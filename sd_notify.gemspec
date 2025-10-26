@@ -13,6 +13,4 @@ Gem::Specification.new do |s|
   s.license     = "MIT"
 
   s.add_development_dependency "minitest"
-  s.add_development_dependency "rubocop"
-  s.add_development_dependency "rubocop-performance"
 end

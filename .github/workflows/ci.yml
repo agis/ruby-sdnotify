@@ -9,12 +9,12 @@ on:
 
 jobs:
   build_older:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     name: Ruby ${{ matrix.ruby }}
     strategy:
       matrix:
         ruby:
-          - 2.2
+          - 2.1
 
     steps:
       - uses: actions/checkout@v3
@@ -24,7 +24,7 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
       - name: Run tests
-        run: ruby -Ilib:test test/*
+        run: bundle exec ruby -Ilib:test test/*
 
   build:
     runs-on: ubuntu-latest
@@ -32,6 +32,7 @@ jobs:
     strategy:
       matrix:
         ruby:
+          # Ruby 2.2 is not supported on Ubuntu 22+ https://github.com/ruby/setup-ruby/issues/496
           - 2.3
           - 2.4
           - 2.5

@@ -59,9 +59,13 @@ module SdNotify
     notify(FDSTORE, unset_env)
   end
 
-  # If the $WATCHDOG_USEC environment variable is set,
-  # and the $WATCHDOG_PID variable is unset or set to the PID of the current
-  # process
+  # Determine whether the systemd's watchdog is enabled for your program. If
+  # enabled, systemd will restart (or take some configured action) on your
+  # service when it goes N seconds without receiving a `WATCHDOG` notification
+  # from your program.
+  #
+  # See #watchdog for sending notifications and #watchdog_interval for how
+  # frequently to send them.
   #
   # @return [Boolean] true if the service manager expects watchdog keep-alive
   #   notification messages to be sent from this process.
@@ -69,21 +73,28 @@ module SdNotify
   # @note Unlike sd_watchdog_enabled(3), this method does not mutate the
   #   environment.
   def self.watchdog?
-    wd_usec = ENV["WATCHDOG_USEC"]
+    return false unless watchdog_interval
+
     wd_pid = ENV["WATCHDOG_PID"]
-
-    return false if !wd_usec
-
-    begin
-      wd_usec = Integer(wd_usec)
-    rescue
-      return false
-    end
-
-    return false if wd_usec <= 0
     return true if !wd_pid || wd_pid == $$.to_s
 
     false
+  end
+
+  # Get the expected number of seconds between watchdog notifications. If
+  # systemd's watchdog manager is enabled, it will take action if it does not
+  # receive notifications at least this often from your program. Returns +nil+
+  # if no watchdog interval is set.
+  #
+  # @return [Float, nil] The frequency (in seconds) at which the service
+  #   manager expects watchdog keep-alive notification messages from this
+  #   process.
+  #
+  # @note Unlike +sd_watchdog_enabled(3)+, this returns seconds, not
+  #   microseconds.
+  def self.watchdog_interval
+    wd_usec = Integer(ENV["WATCHDOG_USEC"]) rescue 0
+    wd_usec > 0 ? wd_usec / 1e6 : nil
   end
 
   # Notify systemd with the provided state, via the notification socket, if

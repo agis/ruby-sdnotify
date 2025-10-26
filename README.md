@@ -67,6 +67,59 @@ sleep 2
 puts "Bye"
 ```
 
+If you are operating a long-running program and want to use systemd's watchdog service manager to monitor your program:
+
+```ruby
+require "sd_notify"
+
+puts "Hello! Booting..."
+
+# doing some initialization work...
+sleep 2
+
+# notify systemd that we're ready
+SdNotify.ready
+
+# You might have a more complicated method of keeping an eye on the internal
+# health of your program, although you will usually want to do this on a
+# separate thread so notifications are not held up by especially long chunks of
+# work in your main working thread.
+watchdog_thread = if SdNotify.watchdog?
+  Thread.new do
+    loop do
+      # Systemd recommends pinging the watchdog at half the configured interval
+      # to make sure notifications always arrive in time.
+      sleep SdNotify.watchdog_interval / 2
+      if service_is_healthy
+        SdNotify.watchdog
+      else
+        break
+      end
+    end
+  end
+end
+
+# Do our main work...
+loop do
+  sleep 10
+  sum += 1
+  break
+end
+
+puts "Finished working. Shutting down..."
+
+# Stop watchdog
+watchdog_thread.exit
+
+# notify systemd we're shutting down
+SdNotify.stopping
+
+# doing some cleanup work...
+sleep 2
+
+puts "Bye"
+```
+
 ## License
 
 ruby-sdnotify is licensed under MIT. See [LICENSE](LICENSE).
